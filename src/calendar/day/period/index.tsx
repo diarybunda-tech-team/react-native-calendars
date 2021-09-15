@@ -115,7 +115,7 @@ export default class PeriodDay extends Component {
         let fillers;
         // TODO: refactor - move all styling logic out of render()
         if (state === 'disabled') {
-            // textStyle.push(this.style.disabledText);
+            textStyle.push(this.style.disabledText);
         }
         else if (state === 'inactive') {
             textStyle.push(this.style.inactiveText);
@@ -188,33 +188,31 @@ export default class PeriodDay extends Component {
         }
         const { theme, accessibilityLabel, testID } = this.props;
 
-        // console.log(this.props.marking)
+        const noneColor = 'rgba(41, 34, 31, 0.05)'
 
-        const DISABLED_COLOR = "rgba(41, 34, 31, 0.15)"
+        // console.log(this.props)
 
         // TODO: refactor - allow feedback for unmarked days
-        return (
-          <TouchableWithoutFeedback testID={testID} onPress={this.onPress} onLongPress={this.onLongPress} disabled={marking?.disableTouchEvent} accessible accessibilityRole={marking?.disableTouchEvent ? undefined : 'button'} accessibilityLabel={accessibilityLabel}>
-            <View style={this.style.wrapper}>
-              {fillers}
-              <View style={containerStyle}>
-                  <View style={{borderWidth: 1, borderRadius: 999, borderColor: this.props.marking ? this.props.marking.moodColor : DISABLED_COLOR, width: Spacing[28], height: Spacing[28], alignItems: 'center', position:'absolute', top: Spacing[2]}}/>
-                  <Text allowFontScaling={false} style={textStyle}>
-                      {String(this.props.children)}
-                  </Text>
-                {/*<Dot theme={theme} color={marking?.dotColor} marked={marking?.marked}/>*/}
-              </View>
-                <FastImage
-                    source={this.props.marking ? this.props.marking.moodIcon : emptyIcon}
-                    style={{
-                        marginTop: Spacing[8],
-                        width: Spacing[28],
-                        height: Spacing[36],
-                    }}
-                    resizeMode="cover"
-                />
-            </View>
-          </TouchableWithoutFeedback>
-        );
+        return (<TouchableWithoutFeedback testID={testID} onPress={this.onPress} onLongPress={this.onLongPress} disabled={marking?.disableTouchEvent} accessible accessibilityRole={marking?.disableTouchEvent ? undefined : 'button'} accessibilityLabel={accessibilityLabel}>
+        <View style={this.style.wrapper}>
+          {fillers}
+          <View style={containerStyle}>
+              <View style={{borderWidth: 1, borderRadius: 999, borderColor: this.props.marking ? this.props.marking.moodColor : noneColor , width: Spacing[28], height: Spacing[28], alignItems: 'center', position:'absolute', top: Spacing[2]}}/>
+              <Text allowFontScaling={false} style={textStyle}>
+                  {String(this.props.children)}
+              </Text>
+            {/*<Dot theme={theme} color={marking?.dotColor} marked={marking?.marked}/>*/}
+          </View>
+            <FastImage
+                source={this.props.marking ? this.props.marking.moodIcon : emptyIcon}
+                style={{
+                    marginTop: Spacing[12],
+                    width: Spacing[36],
+                    height: Spacing[42],
+                }}
+                resizeMode="cover"
+            />
+        </View>
+      </TouchableWithoutFeedback>);
     }
 }

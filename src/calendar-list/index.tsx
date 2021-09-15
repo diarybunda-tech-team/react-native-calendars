@@ -357,23 +357,23 @@ class CalendarList extends Component<Props, State> {
           initialListSize={pastScrollRange + futureScrollRange + 1} // ListView deprecated
           data={this.state.rows}
           renderItem={this.renderItem}
-          getItemLayout={this.getItemLayout}
-          onViewableItemsChanged={this.onViewableItemsChanged}
+          // getItemLayout={this.getItemLayout}
+          // onViewableItemsChanged={this.onViewableItemsChanged}
           viewabilityConfig={this.viewabilityConfig}
           initialScrollIndex={this.state.openDate ? this.getMonthIndex(this.state.openDate) : undefined}
           showsVerticalScrollIndicator={showScrollIndicator}
           showsHorizontalScrollIndicator={horizontal && showScrollIndicator}
           testID={this.props.testID}
-          onLayout={this.props.onLayout}
+          // onLayout={this.props.onLayout}
           removeClippedSubviews={this.props.removeClippedSubviews}
-          pagingEnabled={this.props.pagingEnabled}
+          // pagingEnabled={this.props.pagingEnabled}
           scrollEnabled={this.props.scrollEnabled}
           scrollsToTop={this.props.scrollsToTop}
           horizontal={this.props.horizontal}
           keyboardShouldPersistTaps={this.props.keyboardShouldPersistTaps}
           keyExtractor={this.props.keyExtractor}
-          onEndReachedThreshold={this.props.onEndReachedThreshold}
-          onEndReached={this.props.onEndReached}
+          // onEndReachedThreshold={this.props.onEndReachedThreshold}
+          // onEndReached={this.props.onEndReached}
         />
         {this.renderStaticHeader()}
       </View>
