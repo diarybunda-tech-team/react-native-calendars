@@ -207,8 +207,8 @@ export default class PeriodDay extends Component {
                 source={this.props.marking ? this.props.marking.moodIcon : emptyIcon}
                 style={{
                     marginTop: Spacing[12],
-                    width: Spacing[36],
-                    height: Spacing[42],
+                    width: Spacing[28],
+                    height: Spacing[36],
                 }}
                 resizeMode="cover"
             />
