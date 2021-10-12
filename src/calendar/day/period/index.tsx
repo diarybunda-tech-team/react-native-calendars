@@ -1,12 +1,86 @@
 import _ from 'lodash';
 import PropTypes from 'prop-types';
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import {TouchableWithoutFeedback, Text, View, TouchableOpacity} from 'react-native';
+=======
+
+import React, {Component} from 'react';
+import {TouchableWithoutFeedback, Text, View, ViewStyle} from 'react-native';
+
+import {Theme, DayState} from '../../../types';
+>>>>>>> b122979e0e8ffa36f41da94a5e3f875e2f115777
 // @ts-expect-error
 import { shouldUpdate } from '../../../component-updater';
 import * as defaultStyle from '../../../style';
 import styleConstructor from './style';
 import Dot from '../dot';
+<<<<<<< HEAD
+=======
+import {MarkingProps} from '../marking';
+
+
+interface PeriodDayProps {
+  state?: DayState;
+  marking?: MarkingProps;
+  theme?: Theme;
+  onPress?: (date?: Date) => void;
+  onLongPress?: (date?: Date) => void;
+  date?: Date;
+  accessibilityLabel?: string;
+  testID?: string;
+}
+
+export default class PeriodDay extends Component<PeriodDayProps> {
+  static displayName = 'IGNORE';
+
+  static propTypes = {
+    state: PropTypes.oneOf(['selected', 'disabled', 'inactive', 'today', '']),
+    marking: PropTypes.any,
+    theme: PropTypes.object,
+    onPress: PropTypes.func,
+    onLongPress: PropTypes.func,
+    date: PropTypes.object
+  };
+
+  theme: Theme;
+  style: any;
+  markingStyle: any;
+
+  constructor(props: PeriodDayProps) {
+    super(props);
+
+    this.theme = {...defaultStyle, ...(props.theme || {})};
+    this.style = styleConstructor(props.theme);
+    this.markingStyle = this.getDrawingStyle(props.marking);
+  }
+
+  onPress = () => {
+    this.props.onPress?.(this.props.date);
+  };
+
+  onLongPress = () => {
+    this.props.onLongPress?.(this.props.date);
+  };
+
+  shouldComponentUpdate(nextProps: PeriodDayProps) {
+    const newMarkingStyle = this.getDrawingStyle(nextProps.marking);
+    if (!isEqual(this.markingStyle, newMarkingStyle)) {
+      this.markingStyle = newMarkingStyle;
+      return true;
+    }
+
+    return shouldUpdate(this.props, nextProps, ['children', 'state', 'marking', 'onPress', 'onLongPress', 'date']);
+  }
+
+  // TODO: refactor to use MarkingProps as the type
+  getDrawingStyle(marking?: any) {
+    const defaultStyle = {textStyle: {color: undefined}, containerStyle: {}};
+
+    if (!marking) {
+      return defaultStyle;
+    }
+>>>>>>> b122979e0e8ffa36f41da94a5e3f875e2f115777
 
 import emptyIcon from "../../../../../../assets/images/moodTracker/smallIcon/empty.png";
 import {Spacing} from "../../../../../../app/styles";
